@@ -2,29 +2,34 @@
 # Author: Tuncay ÇOLAK <tuncay.colak@tubitak.gov.tr>
 #lider ahenk version çıkartma
 
-echo -n "eklenti adı giriniz=====>>> "
-read pname
+setup(){
 
-echo -n "bir işlem giriniz:[tag, commit, paket] "
-read deg
+  echo -n "eklenti adı giriniz=====>>> "
+  read pname
+
+  echo -n "bir işlem giriniz:[tag, commit, paket] "
+  read deg
+
+}
 
 create_tag(){
 
-   cd lider-ahenk-$pname-plugin
-   echo $pname " eklentisi"
-   git tag -a v1.1 -m " plugin version 1.1"
-   echo " tag oluşturuldu"
-   git push origin v1.1
-   echo "tag push edildi"
-   git branch v1.1-branch v1.1
-   echo "branch oluşturuldu"
-   git checkout v1.1-branch
-   echo "branch değiştirildi"
-   cd ../
-    /bin/bash sed.sh $pname
+  # cd lider-ahenk-$pname-plugin
+  # echo $pname " eklentisi"
+  # git tag -a v1.1 -m " plugin version 1.1"
+  # echo " tag oluşturuldu"
+  # git push origin v1.1
+  # echo "tag push edildi"
+  # git branch v1.1-branch v1.1
+  # echo "branch oluşturuldu"
+  # git checkout v1.1-branch
+  # echo "branch değiştirildi"
+  # cd ../
+  /bin/bash sed.sh $pname
 }
 
 commit(){
+
   echo -e "commit işlemi yapılacak\n"
   cd lider-ahenk-$pname-plugin
   echo "----->>> "$pname " eklentisi commit ediliyor.."
@@ -46,6 +51,7 @@ commit(){
 }
 
 packeges(){
+
   echo -e "paket işlemi yapılacak\n"
   mkdir /home/tcolak/dev/lider-ahenk/v1.1/paketler/$pname
 
@@ -66,15 +72,21 @@ packeges(){
       echo "db dosyası yok "
   fi
 }
+  
+echo -e " ---->>> LİDER AHENK SÜRÜM YAYINLAMA <<<----\n"
+setup
 
 if [[ $deg == 'tag' ]]; then
   create_tag
-fi
 
-if [[ $deg == 'commit' ]]; then
+elif [[ $deg == 'commit' ]]; then
   commit
-fi
 
-if [[ $deg == 'paket' ]]; then
+elif [[ $deg == 'paket' ]]; then
   packeges
+
+else
+  echo -e "\n Tanımlanmamış bir işlem girdiniz. Lütfen tag, commit ve paket\n işlemlerinden birini giriniz\n"
+  setup
+
 fi
