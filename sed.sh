@@ -27,7 +27,6 @@ if [[  -f $file ]]; then
 	echo "dosya içeriği: "$content
 
 	if grep -Fxq '$content' $file; then
-
 		echo "eklentinin db projesi tanımlanmıştır"
 		sed -i -e 's/<version>1.0.0<\/version>/<version>1.1<\/version>/g' $file
 		echo "db versiyonu 1.1 yapıldı"

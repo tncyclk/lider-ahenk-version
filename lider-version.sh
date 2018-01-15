@@ -8,22 +8,23 @@ read pname
 echo -n "bir işlem giriniz:[tag, commit, paket] "
 read deg
 
-if [[ $deg == 'tag' ]]; then
-#  cd lider-ahenk-$pname-plugin
-#  echo $pname " eklentisi"
-#  git tag -a v1.1 -m " plugin version 1.1"
-#  echo " tag oluşturuldu"
-#  git push origin v1.1
-#  echo "tag push edildi"
-#  git branch v1.1-branch v1.1
-#  echo "branch oluşturuldu"
-#  git checkout v1.1-branch
-#  echo "branch değiştirildi"
-#  cd ../
-  /bin/bash sed.sh $pname
-fi
+create_tag(){
 
-if [[ $deg == 'commit' ]]; then
+   # cd lider-ahenk-$pname-plugin
+   # echo $pname " eklentisi"
+   # git tag -a v1.1 -m " plugin version 1.1"
+   # echo " tag oluşturuldu"
+   # git push origin v1.1
+   # echo "tag push edildi"
+   # git branch v1.1-branch v1.1
+   # echo "branch oluşturuldu"
+   # git checkout v1.1-branch
+   # echo "branch değiştirildi"
+   # cd ../
+    /bin/bash sed.sh $pname
+}
+
+commit(){
   echo -e "commit işlemi yapılacak\n"
   cd lider-ahenk-$pname-plugin
   echo "----->>> "$pname " eklentisi commit ediliyor.."
@@ -42,9 +43,9 @@ if [[ $deg == 'commit' ]]; then
   cd lider-ahenk-$pname-plugin/scripts
   ./build-plugin.sh
   echo "----->>> BUILD OK"
-fi
+}
 
-if [[ $deg == 'paket' ]]; then
+packeges(){
   echo -e "paket işlemi yapılacak\n"
   mkdir /home/tcolak/dev/lider-ahenk/v1.1/paketler/$pname
 
@@ -64,4 +65,16 @@ if [[ $deg == 'paket' ]]; then
   else
       echo "db dosyası yok "
   fi
+}
+
+if [[ $deg == 'tag' ]]; then
+  create_tag
+fi
+
+if [[ $deg == 'commit' ]]; then
+  commit
+fi
+
+if [[ $deg == 'paket' ]]; then
+  packeges
 fi
