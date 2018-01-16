@@ -47,10 +47,9 @@ else
 fi 
 #---------------------------------------------------------------------------
 #lider-console projesi için version güncelleme
-#---------------->>>> buradaki 1.1.qualifier 1.0.0.qualifier olabilir...
 file=lider-console-$1/META-INF/MANIFEST.MF
 if [[ -f $file ]]; then
-	sed -i -e 's/Bundle-Version: 1.0.0/Bundle-Version: 1.1.qualifier/g' $file
+	sed -i -e 's/Bundle-Version: 1.0.0/Bundle-Version:1.0.0.qualifier/g' $file
 	echo -e "MANIFEST.MF dosyasındaki version güncellendi."
 else
 	echo "MANIFEST.MF dosyası bulunamadı.."
@@ -65,20 +64,18 @@ else
 fi
 #---------------------------------------------------------------------------
 #lider-console-backup/pom.xml dosyasında parent tagının kapandığı yerin altında <version>1.0.0-SNAPSHOT</version> eklenir.
-#-------!!!!!!!! <version>1.1-SNAPSHOT<\/version>
 file=lider-console-$1/pom.xml
 if [[ -f $file ]]; then
-	sed -i -e 's/<\/parent>/<\/parent>\n <version>1.1-SNAPSHOT<\/version>/g' $file
+	sed -i -e 's/<\/parent>/<\/parent>\n <version>1.0.0-SNAPSHOT<\/version>/g' $file
 	echo -e "lider-console pom.xml dosyasındaki version güncellendi."
 else
 	echo "lider console pom.xml dosyası bulunamadı.."
 fi
 #---------------------------------------------------------------------------
 #lider-console-backup-feature/pom.xml dosyasında parent tagının kapandığı yerin altında <version>1.0.0-SNAPSHOT</version> eklenir.
-#-------!!!!!!!! <version>1.1-SNAPSHOT<\/version>
 file=lider-console-$1-feature/pom.xml
 if [[ -f $file ]]; then
-	sed -i -e 's/<\/parent>/<\/parent>\n <version>1.1-SNAPSHOT<\/version>/g' $file
+	sed -i -e 's/<\/parent>/<\/parent>\n <version>1.0.0-SNAPSHOT<\/version>/g' $file
 	echo -e "lider-console-feature pom.xml dosyasındaki version güncellendi."
 else
 	echo "lider-console-feature pom.xml dosyası bulunamadı.."
@@ -86,10 +83,9 @@ fi
 #---------------------------------------------------------------------------
 # lider-console-backup plugini versiyonu 1.0.0 dan 1.0.0.qualifier olarak değiştirilir. 
 # yine lider-console-backup-feature projesinin versiyonu 1.0.0 değeri 1.0.0.qualifier olarak değiştirilir.
-# [INFO]---------------->>>> buradaki 1.1.qualifier 1.0.0.qualifier olabilir...
 file=lider-console-$1-feature/feature.xml
 if [[ -f $file ]]; then
-	sed -i -e 's/version="1.0.0"/version="1.1.qualifier"/g' $file
+	sed -i -e 's/version="1.0.0"/version="1.0.0.qualifier"/g' $file
 	echo -e "lider-console-feature feature.xml dosyasındaki version güncellendi."
 else
 	echo "lider-console-feature feature.xml dosyası bulunamadı.."
@@ -103,10 +99,10 @@ cd ../
 echo "plugin name: "$plName
 /bin/bash constant.sh $plName
 #---------------------------------------------------------------------------
-file=lider-ahenk-$1-plugin/scripts/build-plugin.sh
-if [[ -f $file ]]; then
-	sed -i -e 's/mvn clean install -DskipTests/mvn clean install -DskipTests -DforceContextQualifier=1.1/g' $file
-	echo "buiid dosyasındaki versiyon bilgisi güncellendi"
-else
-	echo "dosya bulunamadı"
-fi
+# file=lider-ahenk-$1-plugin/scripts/build-plugin.sh
+# if [[ -f $file ]]; then
+# 	sed -i -e 's/mvn clean install -DskipTests/mvn clean install -DskipTests -DforceContextQualifier=1.1/g' $file
+# 	echo "buiid dosyasındaki versiyon bilgisi güncellendi"
+# else
+# 	echo "dosya bulunamadı"
+# fi

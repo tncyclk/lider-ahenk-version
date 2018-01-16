@@ -14,18 +14,21 @@ setup(){
 
 create_tag(){
 
-  # cd lider-ahenk-$pname-plugin
-  # echo $pname " eklentisi"
-  # git tag -a v1.1 -m " plugin version 1.1"
-  # echo " tag oluşturuldu"
-  # git push origin v1.1
-  # echo "tag push edildi"
-  # git branch v1.1-branch v1.1
-  # echo "branch oluşturuldu"
-  # git checkout v1.1-branch
-  # echo "branch değiştirildi"
-  # cd ../
+  cd lider-ahenk-$pname-plugin
+  echo $pname " eklentisi"
+  git tag -a v1.1 -m " plugin version 1.1"
+  echo " tag oluşturuldu"
+  git push origin v1.1
+  echo "tag push edildi"
+  git branch v1.1-branch v1.1
+  echo "branch oluşturuldu"
+  git checkout v1.1-branch
+  echo "branch değiştirildi"
+  cd ../
   /bin/bash sed.sh $pname
+  echo "eklentinin lider projesi için versiyon güncellenmesi tamamlanmamıştır."
+  /bin/bash version_deb.sh $pname
+  echo "eklentinin ahenk projesi için versiyon güncellenmesi tamamlanmamıştır."
 }
 
 commit(){

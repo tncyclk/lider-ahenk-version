@@ -143,4 +143,7 @@ elif [[ $1 == 'wol' ]]; then
 
 	file=lider-ahenk-$1-plugin/lider-console-$1/src/tr/org/liderahenk/wol/constants/WolConstants.java
 	changeVersion $file
+
+else
+	echo "eklenti bulunamadı."
 fi
