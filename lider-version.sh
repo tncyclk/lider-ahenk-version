@@ -1,6 +1,6 @@
 #!/bin/bash
 # Author: Tuncay ÇOLAK <tuncay.colak@tubitak.gov.tr>
-#lider ahenk version çıkartma
+#lider ahenk 1.1 versiyonu  çıkarma
 
 setup(){
 

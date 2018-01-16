@@ -1,7 +1,6 @@
 #!/bin/bash
 # Author: Tuncay ÇOLAK <tuncay.colak@tubitak.gov.tr>
-#lider ahenk version çıkartma
-
+#lider ahenk 1.1 versiyonu  çıkarma
 
 #lider eklentisi için;
 file=lider-ahenk-$1-plugin/pom.xml
@@ -99,14 +98,15 @@ fi
 #---------------------------------------------------------------------------
 #lider-console-backup/src/tr/org/liderahenk/backup/constants/BackupConstants.java 
 #dosyasında public static final String PLUGIN_VERSION = "1.0.0"; satırı public static final String PLUGIN_VERSION = "1.1"; olarak değiştirilir.
-echo -n -e "\n eklenti adı ilk harfi büyük olacak şekilde giriniz (örn: Backup, DiskQuota): "
-read plName
-echo "--------->>> "$plName
-file=lider-console-$1/src/tr/org/liderahenk/$1/constants/${plName}Constants.java
-echo "-->>>> "$file
+plName=$1
+cd ../
+echo "plugin name: "$plName
+/bin/bash constant.sh $plName
+#---------------------------------------------------------------------------
+file=lider-ahenk-$1-plugin/scripts/build-plugin.sh
 if [[ -f $file ]]; then
-	sed -i -e 's/PLUGIN_VERSION = "1.0.0";/PLUGIN_VERSION = "1.1";/g' $file
-	echo -e "Constants.java dosyasındaki version güncellendi."
+	sed -i -e 's/mvn clean install -DskipTests/mvn clean install -DskipTests -DforceContextQualifier=1.1/g' $file
+	echo "buiid dosyasındaki versiyon bilgisi güncellendi"
 else
-	echo "Constants.java dosyası bulunamadı.."
+	echo "dosya bulunamadı"
 fi
