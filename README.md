@@ -1,2 +1,2 @@
 # lider-ahenk-version
-Lider ahenk versiyon çıkartma
+Lider ahenk 1.1 verisoyonu çıkarma
