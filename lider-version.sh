@@ -11,18 +11,18 @@ function setup {
     task $job
 }
 
-function task() {
+function task {
     for pname in $plugin_list; do
     	echo -e "["$pname"] eklentisi için girmiş olduğunuz işlemler gerçekleştirilecektir.. \n"
 
         if [[ $job == 'tag' ]]; then
-            create_tag $pname
+            create_tag
 
         elif [[ $job == 'commit' ]]; then
-            commit $pname
+            commit
 
         elif [[ $job == 'paket' ]]; then
-            packeges $pname
+            packeges
 
         elif [[ $job == 'exit' ]]; then
         	quit
