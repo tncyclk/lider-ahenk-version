@@ -16,7 +16,6 @@ fi
 cd plugins/lider-ahenk-$1-plugin
 mvn -N versions:update-child-modules
 echo "[BUILD SUCCESS] alt module versiyonları değiştirildi"
-echo -e "Burdayım ---->>> "pwd
 file=lider-$1/pom.xml
 if [[ -f $file ]];then
 	echo "------>>> if e girdim"

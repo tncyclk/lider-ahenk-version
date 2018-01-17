@@ -3,7 +3,7 @@
 #lider ahenk 1.1 versiyonu  çıkarma
 
 echo -e " ---->>> LİDER AHENK SÜRÜM YAYINLAMA <<<----\n"
-plugin_list="antivirus backup browser conky disk-quota firewall local-user login-manager neteork-manager packege-manager password remote-access resource-usage restore rsyslog screensaver screenshot script service sodoers usb-ltsp usb user-privilege wol"
+plugin_list="antivirus backup browser conky disk-quota firewall local-user login-manager network-manager package-manager password remote-access resource-usage restore rsyslog screensaver screenshot script service sudoers usb-ltsp usb user-privilege wol"
 
 #git clone plugin from repository
 function setup {
@@ -113,7 +113,16 @@ function quit {
 	echo "çıkış yapılıyor..."
 	exit
 }
+if [[ -d "plugins" ]]; then
+  echo "plugins dizini zaten var"
+else
+  mkdir plugins
+fi
+
+if [[ -d "paketler" ]]; then
+  echo "paketler dizini zaten var"
+else
+  mkdir paketler
+fi
 #run setup function  
-mkdir plugins
-mkdir paketler
 setup
