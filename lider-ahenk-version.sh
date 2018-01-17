@@ -114,4 +114,6 @@ function quit {
 	exit
 }
 #run setup function  
+mkdir plugins
+mkdir paketler
 setup
