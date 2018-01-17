@@ -5,6 +5,7 @@
 echo -e " ---->>> LİDER AHENK SÜRÜM YAYINLAMA <<<----\n"
 plugin_list="conky backup"
 
+#git clone plugin from repository
 function setup {
   echo -n "Bir işlem giriniz:[tag, commit, copy, exit] : "
   read job
@@ -15,22 +16,22 @@ function plugin_clone {
   git clone git@github.com:Pardus-LiderAhenk/lider-ahenk-$pname-plugin.git plugins/lider-ahenk-$pname-plugin
   echo $1" eklentisi kopyalandı."
   echo "--------------------------------------------------------------------------------"
-
 }
 
 function task {
   for pname in $plugin_list; do
-
-    echo -e "["$pname"] eklentisi için girmiş olduğunuz işlemler gerçekleştirilecektir.. \n"
-    plugin_clone
-
+    
     if [[ $job == 'tag' ]]; then
+      echo -e "["$pname"] eklentisi için girmiş olduğunuz işlemler gerçekleştirilecektir.. \n"
+      plugin_clone
       create_tag
 
     elif [[ $job == 'commit' ]]; then
+      echo -e "["$pname"] eklentisi için girmiş olduğunuz işlemler gerçekleştirilecektir.. \n"
       commit
 
     elif [[ $job == 'copy' ]]; then
+      echo -e "["$pname"] eklentisi için girmiş olduğunuz işlemler gerçekleştirilecektir.. \n"
       packeges
 
     elif [[ $job == 'exit' ]]; then
@@ -42,7 +43,7 @@ function task {
     fi
   done
 }
-
+ # yayınlanacak versiyon bilgisine ait tag oluşturuluyor.
 function create_tag {
 
   cd plugins/lider-ahenk-$pname-plugin
@@ -56,14 +57,14 @@ function create_tag {
   git checkout v1.1-branch
   echo "branch değiştirildi"
   cd ../..
-  /bin/bash sed.sh $pname
+  /bin/bash update_version.sh $pname
   echo $pname" eklentisinin lider projesi için versiyon güncellenmesi tamamlanmıştır."
-  /bin/bash version_deb.sh $pname
+  /bin/bash update_version_deb.sh $pname
   echo $pname" eklentisinin ahenk projesi için versiyon güncellenmesi tamamlanmıştır."
   echo -e "\n----------------------------------------------------------------------------\n"
-  commit
 }
 
+#Versiyon değişiklikleri github a commit ediliyor.
 function commit {
 
   echo -e "commit işlemi yapılacak\n"
@@ -112,7 +113,5 @@ function quit {
 	echo "çıkış yapılıyor..."
 	exit
 }
-mkdir plugins
-mkdir paketler
 #run setup function  
 setup

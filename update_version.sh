@@ -97,7 +97,7 @@ fi
 plName=$1
 cd ../..
 echo "plugin name: "$plName
-/bin/bash constant.sh $plName
+/bin/bash update_version_constant_file.sh $plName
 #---------------------------------------------------------------------------
 # file=lider-ahenk-$1-plugin/scripts/build-plugin.sh
 # if [[ -f $file ]]; then
