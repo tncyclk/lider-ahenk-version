@@ -2,17 +2,39 @@
 # Author: Tuncay ÇOLAK <tuncay.colak@tubitak.gov.tr>
 #lider ahenk 1.1 versiyonu  çıkarma
 
-setup(){
+echo -e " ---->>> LİDER AHENK SÜRÜM YAYINLAMA <<<----\n"
+plugin_list="conky backup"
 
-  echo -n "eklenti adı giriniz=====>>> "
-  read pname
-
-  echo -n "bir işlem giriniz:[tag, commit, paket] "
-  read deg
-
+function setup {
+    echo -n "Bir işlem giriniz:[tag, commit, paket, exit] : "
+    read job
+    task $job
 }
 
-create_tag(){
+function task() {
+    for pname in $plugin_list; do
+    	echo -e "["$pname"] eklentisi için girmiş olduğunuz işlemler gerçekleştirilecektir.. \n"
+
+        if [[ $job == 'tag' ]]; then
+            create_tag $pname
+
+        elif [[ $job == 'commit' ]]; then
+            commit $pname
+
+        elif [[ $job == 'paket' ]]; then
+            packeges $pname
+
+        elif [[ $job == 'exit' ]]; then
+        	quit
+
+        else
+            echo -e "\n[UYARI] Tanımlanmamış bir işlem girdiniz. Lütfen [tag, commit, paket veya exit]\n işlemlerinden birini giriniz\n"
+            setup
+        fi
+    done
+}
+
+function create_tag {
 
   cd lider-ahenk-$pname-plugin
   echo $pname " eklentisi"
@@ -26,12 +48,13 @@ create_tag(){
   echo "branch değiştirildi"
   cd ../
   /bin/bash sed.sh $pname
-  echo "eklentinin lider projesi için versiyon güncellenmesi tamamlanmamıştır."
+  echo $pname" eklentisinin lider projesi için versiyon güncellenmesi tamamlanmıştır."
   /bin/bash version_deb.sh $pname
-  echo "eklentinin ahenk projesi için versiyon güncellenmesi tamamlanmamıştır."
+  echo $pname" eklentisinin ahenk projesi için versiyon güncellenmesi tamamlanmıştır."
+  echo -e "\n----------------------------------------------------------------------------\n"
 }
 
-commit(){
+function commit {
 
   echo -e "commit işlemi yapılacak\n"
   cd lider-ahenk-$pname-plugin
@@ -48,12 +71,13 @@ commit(){
   echo "------->>> uzaktan tag silindi"
   git push origin v1.1
   echo "------>>> tag push edildi"
-  cd lider-ahenk-$pname-plugin/scripts
-  ./build-plugin.sh
+  /bin/bash scripts/build-plugin.sh
   echo "----->>> BUILD OK"
+  echo -e "------------------------------------------------------------------------------------\n"
+  cd ..
 }
 
-packeges(){
+function packeges {
 
   echo -e "paket işlemi yapılacak\n"
   mkdir /home/tcolak/dev/lider-ahenk/v1.1/paketler/$pname
@@ -75,21 +99,10 @@ packeges(){
       echo "db dosyası yok "
   fi
 }
-  
-echo -e " ---->>> LİDER AHENK SÜRÜM YAYINLAMA <<<----\n"
+
+function quit {
+	exit
+}
+
+#run setup function  
 setup
-
-if [[ $deg == 'tag' ]]; then
-  create_tag
-
-elif [[ $deg == 'commit' ]]; then
-  commit
-
-elif [[ $deg == 'paket' ]]; then
-  packeges
-
-else
-  echo -e "\n Tanımlanmamış bir işlem girdiniz. Lütfen tag, commit ve paket\n işlemlerinden birini giriniz\n"
-  setup
-
-fi

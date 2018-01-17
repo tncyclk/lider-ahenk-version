@@ -49,7 +49,7 @@ fi
 #lider-console projesi için version güncelleme
 file=lider-console-$1/META-INF/MANIFEST.MF
 if [[ -f $file ]]; then
-	sed -i -e 's/Bundle-Version: 1.0.0/Bundle-Version:1.0.0.qualifier/g' $file
+	sed -i -e 's/Bundle-Version: 1.0.0/Bundle-Version: 1.0.0.qualifier/g' $file
 	echo -e "MANIFEST.MF dosyasındaki version güncellendi."
 else
 	echo "MANIFEST.MF dosyası bulunamadı.."
