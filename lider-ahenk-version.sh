@@ -3,7 +3,7 @@
 #lider ahenk 1.1 versiyonu  çıkarma
 
 echo -e " ---->>> LİDER AHENK SÜRÜM YAYINLAMA <<<----\n"
-plugin_list="conky backup"
+plugin_list="antivirus backup browser conky disk-quota firewall local-user login-manager neteork-manager packege-manager password remote-access resource-usage restore rsyslog screensaver screenshot script service sodoers usb-ltsp usb user-privilege wol"
 
 #git clone plugin from repository
 function setup {
