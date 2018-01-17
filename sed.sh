@@ -3,7 +3,7 @@
 #lider ahenk 1.1 versiyonu  çıkarma
 
 #lider eklentisi için;
-file=lider-ahenk-$1-plugin/pom.xml
+file=plugins/lider-ahenk-$1-plugin/pom.xml
 echo $file
 if [[ -f $file ]];then
 
@@ -13,7 +13,7 @@ else
 	echo "dosya bulunamadı..!"
 fi
 
-cd lider-ahenk-$1-plugin
+cd plugins/lider-ahenk-$1-plugin
 mvn -N versions:update-child-modules
 echo "[BUILD SUCCESS] alt module versiyonları değiştirildi"
 echo -e "Burdayım ---->>> "pwd
@@ -95,7 +95,7 @@ fi
 #lider-console-backup/src/tr/org/liderahenk/backup/constants/BackupConstants.java 
 #dosyasında public static final String PLUGIN_VERSION = "1.0.0"; satırı public static final String PLUGIN_VERSION = "1.1"; olarak değiştirilir.
 plName=$1
-cd ../
+cd ../..
 echo "plugin name: "$plName
 /bin/bash constant.sh $plName
 #---------------------------------------------------------------------------
