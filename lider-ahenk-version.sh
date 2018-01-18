@@ -22,16 +22,16 @@ function task {
   for pname in $plugin_list; do
     
     if [[ $job == 'tag' ]]; then
-      echo -e "["$pname"] eklentisi için girmiş olduğunuz işlemler gerçekleştirilecektir.. \n"
+      echo -e "["$pname"] eklentisi için girmiş olduğunuz işlemler gerçekleştirilecektir.. \n" >> version.log
       plugin_clone
       create_tag
 
     elif [[ $job == 'commit' ]]; then
-      echo -e "["$pname"] eklentisi için girmiş olduğunuz işlemler gerçekleştirilecektir.. \n"
+      echo -e "["$pname"] eklentisi için girmiş olduğunuz işlemler gerçekleştirilecektir.. \n" >> version.log
       commit
 
     elif [[ $job == 'copy' ]]; then
-      echo -e "["$pname"] eklentisi için girmiş olduğunuz işlemler gerçekleştirilecektir.. \n"
+      echo -e "["$pname"] eklentisi için girmiş olduğunuz işlemler gerçekleştirilecektir.. \n" >> version.log
       packeges
 
     elif [[ $job == 'exit' ]]; then
@@ -58,10 +58,10 @@ function create_tag {
   echo "branch değiştirildi"
   cd ../..
   /bin/bash update_version.sh $pname
-  echo $pname" eklentisinin lider projesi için versiyon güncellenmesi tamamlanmıştır."
+  echo $pname" eklentisinin lider projesi için versiyon güncellenmesi tamamlanmıştır." >> version.log
   /bin/bash update_version_deb.sh $pname
   echo $pname" eklentisinin ahenk projesi için versiyon güncellenmesi tamamlanmıştır."
-  echo -e "\n----------------------------------------------------------------------------\n"
+  echo -e "\n----------------------------------------------------------------------------\n" >> version.log
 }
 
 #Versiyon değişiklikleri github a commit ediliyor.
@@ -101,9 +101,9 @@ function packeges {
 
   echo "paketler kopyalandı"
 
-  file=/home/tcolak/dev/lider-ahenk/v1.1/plugins/lider-ahenk-$pname-plugin/lider-$pname-db
-  if [ -f $file ];then
-    cd /home/tcolak/dev/lider-ahenk/v1.1/plugins/lider-ahenk-$pname-plugin/lider-$pname-db/target/lider-$pname-db-1.1.jar /home/tcolak/dev/lider-ahenk/v1.1/paketler/$pname
+  file=plugins/lider-ahenk-$pname-plugin/lider-$pname-db
+  if [[ -f $file ]];then
+    cp plugins/lider-ahenk-$pname-plugin/lider-$pname-db/target/lider-$pname-db-1.1.jar paketler/$pname
   else
     echo "db dosyası yok "
   fi
