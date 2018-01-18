@@ -88,24 +88,23 @@ function commit {
 
 function packeges {
   /bin/bash plugins/lider-ahenk-$pname-plugin/scripts/build-plugin.sh
-  echo "----------------->>> BUILD OK <<<--------------------"
+  echo "["$pname"] ----------------->>> BUILD OK <<<--------------------" >> build.log
 
-  echo -e "paket işlemi yapılacak\n"
+  echo -e "["$pname"] --->> paket kopyalama işlemi yapılacak\n" >> build.log
   mkdir paketler/$pname
 
   cp /tmp/lider-ahenk-$pname-plugin/ahenk-${pname}_1.1_amd64.deb  paketler/$pname
   cp /tmp/lider-ahenk-$pname-plugin/lider-$pname-1.1.jar  paketler/$pname
 
-  zip -r plugins/lider-ahenk-$pname-plugin/lider-console-$pname-feature/target/site/lider-$pname-console_1.1.zip .
-  cp plugins/lider-ahenk-$pname-plugin/lider-console-$pname-feature/target/site/lider-$pname-console_1.1.zip paketler/$pname
-
-  echo "paketler kopyalandı"
+  zip -r paketler/$pname/lider-$pname-console_1.1.zip plugins/lider-ahenk-$pname-plugin/lider-console-$pname-feature/target/site
+  
+  echo "["$pname"] --->> paketler kopyalandı" >> build.log
 
   file=plugins/lider-ahenk-$pname-plugin/lider-$pname-db
-  if [[ -f $file ]];then
+  if [[ -d $file ]];then
     cp plugins/lider-ahenk-$pname-plugin/lider-$pname-db/target/lider-$pname-db-1.1.jar paketler/$pname
   else
-    echo "db dosyası yok "
+    echo "["$pname"] --->> db dosyası yok " >> build.log
   fi
 }
 
