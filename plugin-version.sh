@@ -2,7 +2,7 @@
 # Author: Tuncay ÇOLAK <tuncay.colak@tubitak.gov.tr>
 #lider ahenk 1.1 versiyonu  çıkarma
 
-echo -e " ---->>> LİDER AHENK SÜRÜM YAYINLAMA <<<----\n"
+echo -e " ---->>> LİDER AHENK EKLENTİ SÜRÜMÜ YAYINLAMA <<<----\n"
 plugin_list="antivirus backup browser conky disk-quota firewall local-user login-manager network-manager package-manager password remote-access resource-usage restore rsyslog screensaver screenshot script service sudoers usb-ltsp usb user-privilege wol"
 
 #git clone plugin from repository
