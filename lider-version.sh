@@ -23,7 +23,8 @@ function changeVersion {
 	echo -e "["$file"] dosyasında versiyon bilgisi değiştirildi \n"
 }
 
-while read file
+#read name file from lider_file
+for file in $(cat lider_file);
 do
 	echo "----->>> "$file
 	if [[ -f $file ]]; then
@@ -31,7 +32,16 @@ do
 	else
 		echo "["$file"] dosya bulunamadı"
 	fi
-done < lider_file
+done
+
+file=lider/lider-distro/pom.xml
+if [[ -f $file ]]; then
+	sed -i -e 's/<lider.ahenk.version>1.0.0-SNAPSHOT<\/lider.ahenk.version>/<lider.ahenk.version>1.1<\/lider.ahenk.version>/g' $file
+	echo -e "["$file"] dosyasında versiyon bilgisi değiştirildi \n"
+else
+	echo "["$file"] dosya bulunamadı"	
+fi
+
 
 #file=lider/lider-karaf/src/main/feature/feature.xml
 #if [[ -f $file ]]; then

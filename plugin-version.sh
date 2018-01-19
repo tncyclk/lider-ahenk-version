@@ -91,7 +91,7 @@ function packeges {
   echo "["$pname"] ----------------->>> BUILD OK <<<--------------------" >> build.log
 
   echo -e "["$pname"] --->> paket kopyalama işlemi yapılacak\n" >> build.log
-  mkdir paketler/$pname
+  #mkdir paketler/$pname
 
   cp /tmp/lider-ahenk-$pname-plugin/ahenk-${pname}_1.1_amd64.deb  paketler/$pname
   cp /tmp/lider-ahenk-$pname-plugin/lider-$pname-1.1.jar  paketler/$pname

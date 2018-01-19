@@ -36,6 +36,16 @@ if [[ -f $file ]];then
 else
 	echo "dosya bulunamadı...!!"
 fi
+
+#---------------------------------------------------------------------------
+file=lider-$1-db/pom.xml
+if [[ -f $file ]]; then
+	sed -i -e 's/<Bundle-Version>1.0.0<\/Bundle-Version>/<Bundle-Version>1.1<\/Bundle-Version>/g' $file
+	echo -e $file" dosyasında versiyon değiştirildi"
+else
+	echo $file" dosya bulunamadı"
+	#statements
+fi
 #---------------------------------------------------------------------------
 file=lider-$1/src/main/resources/tr.org.liderahenk.$1.cfg
 if [[ -f $file ]]; then
