@@ -47,13 +47,8 @@ else
 	#statements
 fi
 #---------------------------------------------------------------------------
-file=lider-$1/src/main/resources/tr.org.liderahenk.$1.cfg
-if [[ -f $file ]]; then
-	sed -i -e 's/plugin.version = 1.0.0/plugin.version = 1.1/g' $file
-	echo -e "lider konfigürasyon dosyasındaki versiyon değiştirildi"
-else
-	echo "lider conf dosyası bulunamadı."
-fi 
+#eklentilerin conf dosyalarındaki versiyonları değiştirilmelidir.
+/bin/bash conf_version.sh
 #---------------------------------------------------------------------------
 #lider-console projesi için version güncelleme
 file=lider-console-$1/META-INF/MANIFEST.MF
