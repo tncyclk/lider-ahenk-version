@@ -1,2 +1,2 @@
 # lider-ahenk-version
-Lider ahenk versiyon çıkartma
+Lider ahenk sürüm yayınlama
